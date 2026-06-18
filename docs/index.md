@@ -21,6 +21,8 @@ Use the navigation to the left to read about the available resources.
 # Configure the OpenSearch provider
 provider "opensearch" {
   url = "http://127.0.0.1:9200"
+  # Required only for resources backed by OpenSearch Dashboards APIs.
+  dashboards_url = "http://127.0.0.1:5601"
 }
 
 # Create an index template
@@ -77,6 +79,7 @@ EOF
 - `cacert_file` (String) A Custom CA certificate
 - `client_cert_path` (String) A X509 certificate to connect to OpenSearch
 - `client_key_path` (String) A X509 key to connect to OpenSearch
+- `dashboards_url` (String) OpenSearch Dashboards URL. Required for OpenSearch Dashboards API resources such as workspaces.
 - `healthcheck` (Boolean) Set the client healthcheck option for the OpenSearch client. Healthchecking is designed for direct access to the cluster.
 - `host_override` (String) If provided, sets the 'Host' header of requests and the 'ServerName' for certificate validation to this value. See the documentation on connecting to OpenSearch via an SSH tunnel.
 - `insecure` (Boolean) Disable SSL verification of API calls
