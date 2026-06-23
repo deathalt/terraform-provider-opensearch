@@ -23,6 +23,7 @@ resource "opensearch_dashboard_workspace" "logs" {
   name        = "Logs"
   description = "Production log analysis"
   features    = ["use-case-observability"]
+  tenant_name = "tenant-a"
 }
 ```
 
@@ -38,6 +39,7 @@ resource "opensearch_dashboard_workspace" "logs" {
 - `description` (String) Workspace description.
 - `features` (Set of String) Workspace features, such as use-case-all or use-case-observability.
 - `permissions` (String) Workspace permissions object as JSON.
+- `tenant_name` (String) OpenSearch Dashboards tenant name where the workspace is stored. Defaults to the global tenant.
 
 ### Read-Only
 

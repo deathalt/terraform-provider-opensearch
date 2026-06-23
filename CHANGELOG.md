@@ -3,7 +3,9 @@
 ### Changed
 
 ### Added
+* Add OpenSearch Dashboards data source connection resource with tenant support.
 * Add OpenSearch Dashboards workspace resources.
+* Add tenant support for OpenSearch Dashboards workspace resources and workspace saved object associations.
 
 ### Fixed
 * Use the OpenSearch Dashboards `workspaceId` and `savedObjects` request body fields when associating workspace saved objects.

@@ -86,7 +86,7 @@ func Provider() *schema.Provider {
 				Type:        schema.TypeString,
 				Optional:    true,
 				DefaultFunc: schema.EnvDefaultFunc("OPENSEARCH_DASHBOARDS_URL", ""),
-				Description: "OpenSearch Dashboards URL. Required for OpenSearch Dashboards API resources such as workspaces.",
+				Description: "OpenSearch Dashboards URL. Required for OpenSearch Dashboards API resources.",
 			},
 			"sniff": {
 				Type:        schema.TypeBool,
@@ -241,6 +241,7 @@ func Provider() *schema.Provider {
 			"opensearch_index":                       resourceOpensearchIndex(),
 			"opensearch_ingest_pipeline":             resourceOpensearchIngestPipeline(),
 			"opensearch_dashboard_object":            resourceOpensearchDashboardObject(),
+			"opensearch_dashboard_data_source":       resourceOpensearchDashboardDataSource(),
 			"opensearch_dashboard_workspace":         resourceOpensearchDashboardWorkspace(),
 			"opensearch_dashboard_workspace_objects": resourceOpensearchDashboardWorkspaceObjects(),
 			"opensearch_audit_config":                resourceOpenSearchAuditConfig(),

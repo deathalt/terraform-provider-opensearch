@@ -7,4 +7,5 @@ resource "opensearch_dashboard_workspace" "logs" {
   name        = "Logs"
   description = "Production log analysis"
   features    = ["use-case-observability"]
+  tenant_name = "tenant-a"
 }

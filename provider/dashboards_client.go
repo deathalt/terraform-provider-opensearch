@@ -19,6 +19,10 @@ type dashboardsAPIResponse struct {
 }
 
 func dashboardsRequest(conf *ProviderConf, method, path string, requestBody interface{}, responseBody interface{}) error {
+	return dashboardsRequestWithHeaders(conf, method, path, requestBody, responseBody, nil)
+}
+
+func dashboardsRequestWithHeaders(conf *ProviderConf, method, path string, requestBody interface{}, responseBody interface{}, headers map[string]string) error {
 	if conf.dashboardsUrl == "" || conf.parsedDashboardsUrl == nil {
 		return fmt.Errorf("dashboards_url must be configured to use OpenSearch Dashboards API resources")
 	}
@@ -40,6 +44,9 @@ func dashboardsRequest(conf *ProviderConf, method, path string, requestBody inte
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set(dashboardsXsrfHeader, "true")
+	for k, v := range headers {
+		req.Header.Set(k, v)
+	}
 
 	if conf.parsedDashboardsUrl.User.Username() != "" {
 		password, _ := conf.parsedDashboardsUrl.User.Password()
@@ -105,6 +112,15 @@ func dashboardsHTTPClient(conf *ProviderConf) *http.Client {
 		return tlsHttpClient(conf, headers)
 	}
 	return defaultHttpClient(conf, headers)
+}
+
+func dashboardTenantHeaders(tenantName string) map[string]string {
+	if tenantName == "" {
+		tenantName = "global"
+	}
+	return map[string]string{
+		SECURITY_TENANT_HEADER: tenantName,
+	}
 }
 
 var errDashboardsNotFound = errors.New("OpenSearch Dashboards object not found")

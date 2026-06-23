@@ -1,0 +1,1 @@
+terraform import opensearch_dashboard_data_source.remote data-source-id

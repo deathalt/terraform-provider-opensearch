@@ -7,10 +7,12 @@ resource "opensearch_dashboard_workspace" "logs" {
   name        = "Logs"
   description = "Production log analysis"
   features    = ["use-case-observability"]
+  tenant_name = "tenant-a"
 }
 
 resource "opensearch_dashboard_workspace_objects" "logs_index_pattern" {
   workspace_id = opensearch_dashboard_workspace.logs.id
+  tenant_name  = "tenant-a"
 
   saved_object {
     type = "index-pattern"
